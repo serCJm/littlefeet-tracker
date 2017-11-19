@@ -1,4 +1,5 @@
-# Instance Folder - used for configuration parameters
+/.vscode
 /venv
+# Instance Folder - used for configuration parameters
 /instance
 *.pyc
