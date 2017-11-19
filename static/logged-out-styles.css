@@ -1,0 +1,337 @@
+
+/* NAVIGATION BAR */
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    display: block;
+    padding: 1.5vh;
+}
+
+nav li:first-child a:hover {
+    color: #2889E8;
+}
+
+.logo {
+    width: 5vh;
+    height: 5vh;
+    overflow: hidden;
+}
+
+.btn-nav {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    background: #2889E8;
+    text-decoration: none;
+    font-size: 24px;
+    border: solid 2px #1CAAFF;
+    cursor: pointer;
+    transition: background-color 2s ease-out;
+}
+
+.btn-nav:hover {
+    background: #37ACE2;
+}
+
+@media screen and (min-width: 768px){
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav h1 {
+            margin-left: 8vw;
+        }
+
+        nav li:first-child {
+            padding-left: 3vw;
+            padding-right: 3vw;
+        }
+}
+
+/* BAKCGROUNGDS */
+
+.bg-index {
+    background: url("img/littlefeet-tracker-bgr-main.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.bg-signup {
+    background: url("img/bg-signup.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.bg-login {
+    background: url("img/bg-login.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* INDEX PAGE */
+
+.index-heading {
+    font-weight: 700;
+    font-size: 4vw;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    width: 50%;
+    margin: auto;
+    position: relative;
+    padding-top: 5%;
+}
+
+.btn-signup {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    background: #2889E8;
+    text-decoration: none;
+    font-size: 24px;
+    border: solid 2px #1CAAFF;
+    padding: 1%;
+    cursor: pointer;
+    transition: background-color 2s ease-out;
+}
+
+.btn-signup:hover {
+    background: #37ACE2;
+}
+
+.photo-credit {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
+
+/* SIGN-UP FORM */
+
+.signup {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    width: 25%;
+    margin: 10% 7% 0 68%;
+    color: #222;
+}
+
+.signup h1 {
+    font-weight: 500;
+    font-size: 2.5vw;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+}
+
+.form-input {
+    display: block;
+    box-sizing: border-box;
+    margin-top: 15%;
+    margin-left: 10%;
+    border: none;
+    border-bottom: 2px solid #AAA;
+    font-weight: 300;
+    font-size: 1.5vw;
+    transition: 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom: 2px solid #2889E8;
+    color: #2889E8;
+    transition: 0.2s ease;
+}
+
+button[type="submit"] {
+    background: #2889E8;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    margin: 15% auto 10% 10%;
+    font-size: 1.5vw;
+    padding: 3% 10%;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.7s ease;
+}
+
+button[type="submit"]:active {
+    opacity: 1;
+    outline: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+.signup .errors {
+    display: block;
+    color: red;
+    font-size: 1.2vw;
+    margin: 5% 10% 0 10%;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .signup {
+        width: 80%;
+        margin: 25% auto;
+    }
+
+    .signup h1 {
+        font-size: 5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+    }
+    
+    .form-input {
+        margin: 10% auto 0 5%;
+        width: 75%;
+        font-size: 4vw;
+    }
+    
+    button[type="submit"] {
+        margin-top: 8%;
+        margin-left: 5%;
+        margin-bottom: 5%;
+        font-size: 3.5vw;
+    }
+
+    .signup .errors {
+        margin: 3% auto 0 5%;
+        font-size: 2.5vw;
+    }
+
+}
+
+/* LOGIN FORM */
+
+.login {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #222;
+}
+
+.login h1 {
+    font-weight: 500;
+    font-size: 2.5vw;
+    text-align: center;
+    margin: 0 auto;
+    padding: 3% 0 5% 0;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto 5% auto;
+    border: none;
+    border-bottom: 2px solid #AAA;
+    font-weight: 300;
+    font-size: 1.5vw;
+    transition: 0.2 ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-bottom: 2px solid #2889E8;
+    color: #2889E8;
+    transition: 0.2s ease;
+}
+
+.login button[type="submit"] {
+    display: block;
+    background: #2889E8;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    margin: 0 auto;
+    font-size: 1.5vw;
+    padding: 3% 5%;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.7s ease;
+}
+
+button[type="submit"]:active {
+    opacity: 1;
+    outline: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .login {
+        width: 80%;
+    }
+
+    .login h1 {
+        font-size: 5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+    }
+    
+    .login input[type="text"],
+    .login input[type="password"] {
+        font-size: 2.5vw;
+    }
+    
+    .login button[type="submit"] {
+        font-size: 3vw;
+    }
+}
+
+/* MESSAGES */
+
+.message-success {
+    color: rgba(84, 240, 84, 0.6);
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.error {
+    color: rgba(196, 10, 10, 0.6);
+    text-align: center;
+    font-size: 1.5em;
+}

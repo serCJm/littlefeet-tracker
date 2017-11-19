@@ -1,0 +1,11 @@
+
+<!-- wtform
+    {% from "includes/_formhelpers.html" import render_field %}
+    {{ render_field(form.activity, class="select-activity") }}
+    
+    <div class="time-container">
+            <label>Start time:</label>
+            {{ render_field(form.start) }}
+            <label>End time:</label>
+            {{ render_field(form.end) }}
+    </div> -->

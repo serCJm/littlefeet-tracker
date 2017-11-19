@@ -1,0 +1,180 @@
+{% extends "dashboard-layout.html" %} 
+
+{% block font %} <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> {% endblock font %}
+
+{% block title %}History{% endblock title %}
+
+{% block main %} 
+
+<div class="container-charts">
+{% for entry in dates %}
+    <acticle class="day-summary">      
+        <h4>{{ entry['date'] }}</h4>
+        <h4>Hours:</h4>
+        <svg class="h{{ entry['date'] }}" height="250px" width="300px"></svg>
+        <h4>Count:</h4>
+        <svg class="c{{ entry['date'] }}" height="250px" width="300px"></svg>
+        {% for note in notes %}
+            {% if note.note and note.date == entry['date'] %}
+                    <p>{{note.note}}</p>
+            {% endif %}
+        {% endfor %}
+    </acticle>        
+{% endfor %}
+</div>
+    
+
+
+<script>
+    
+    // get history data in JSON format (as an array)
+    var dates = JSON.parse('{{ dates|tojson }}');
+    //console.log(dates);
+    
+
+    // DRAW HOURS CHART
+    // iterate over array entries in history
+    for (i = 0; i < dates.length; i++) {
+        // get current date
+        var date = dates[i].date;
+
+        // select svg for d3
+        var hours = d3.select("." + "h" + date)
+                .append("g")
+                .attr("transform", "translate(150,100)");
+
+        // create a pie generator with configuration
+        var pie = d3.pie()
+            .value(function(d) {return d.hours})
+
+        // create an arc generator with configuration
+        var arcGenerator = d3.arc()
+            .innerRadius(30)
+            .outerRadius(100)
+
+        // pass data into pie chart
+        var arcData = pie(dates[i].activities)
+
+        // create a path element 
+        hours.selectAll("path")
+            .data(arcData)
+            .enter()
+            .append("path")
+            .attr("d", arcGenerator)
+            .on("mouseover", function(d) {
+                        d3.select(this.parentNode)
+                        .append("text")
+                        .attr("class", "text-activity")
+                        .text(d.name)
+                        .attr("y", 125)
+                })
+            .on("mouseout", function(d){
+                d3.selectAll("text.text-activity").remove();
+            });
+
+        // fill color depending on type of activity
+        hours.selectAll("path")
+            .data(dates[i].activities)
+            .attr("fill", function(d) {
+                if (d.name == "sleeping") {
+                    return "#0B549B";
+                } else if (d.name == "feeding") {
+                    return "#EC4B40";
+                } else if (d.name == "playing") {
+                    return "#2889E8";
+                } else if (d.name == "bathing") {
+                    return "#A5B50D";
+                } else {
+                    return "#F5E941";
+                }
+            });
+                
+        // labels
+        hours.selectAll("text")
+            .data(arcData)
+            .enter()
+            .append("text")
+            .each(function(d) {
+                var centroid = arcGenerator.centroid(d);
+                d3.select(this)
+                    .attr('x', centroid[0])
+                    .attr('y', centroid[1])
+                    .attr("class", "text-label")
+                    .text(d.data.hours)
+            });
+    }
+
+    // DRAW COUNT CHART
+    // iterate over array entries in history
+    for (i = 0; i < dates.length; i++) {
+        // get current date
+        var date = dates[i].date;
+
+        // select svg for d3
+        var count = d3.select("." + "c" + date)
+                .append("g")
+                .attr("transform", "translate(150,100)");
+
+        // create a pie generator with configuration
+        var pie = d3.pie()
+            .value(function(d) {return d.count})
+
+        // create an arc generator with configuration
+        var arcGenerator = d3.arc()
+            .innerRadius(30)
+            .outerRadius(100)
+
+        // pass data into pie chart
+        var arcData = pie(dates[i].activities)
+
+        // create a path element 
+        count.selectAll("path")
+            .data(arcData)
+            .enter()
+            .append("path")
+            .attr("d", arcGenerator)
+            .on("mouseover", function(d) {
+                        d3.select(this.parentNode)
+                        .append("text")
+                        .attr("class", "text-activity")
+                        .text(d.name)
+                        .attr("y", 125)
+                })
+            .on("mouseout", function(d){
+                d3.selectAll("text.text-activity").remove();
+            });
+
+        // fill color depending on type of activity
+        count.selectAll("path")
+            .data(dates[i].activities)
+            .attr("fill", function(d) {
+                if (d.name == "sleeping") {
+                    return "#0B549B";
+                } else if (d.name == "feeding") {
+                    return "#EC4B40";
+                } else if (d.name == "playing") {
+                    return "#2889E8";
+                } else if (d.name == "bathing") {
+                    return "#A5B50D";
+                } else {
+                    return "#F5E941";
+                }
+            });
+                
+        // labels
+        count.selectAll("text")
+            .data(arcData)
+            .enter()
+            .append("text")
+            .each(function(d) {
+                var centroid = arcGenerator.centroid(d);
+                d3.select(this)
+                    .attr('x', centroid[0])
+                    .attr('y', centroid[1])
+                    .attr("class", "text-label")
+                    .text(d.data.count)
+            });
+    }
+    
+    </script>
+{% endblock main %}

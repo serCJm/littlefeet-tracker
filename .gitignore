@@ -1,0 +1,4 @@
+# Instance Folder - used for configuration parameters
+/venv
+/instance
+*.pyc

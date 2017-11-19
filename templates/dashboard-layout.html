@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="CJ">
+    <meta name="description" content="Little Feet Tracking is a web application that allows you to track you babies schedule with simple logs and beautiful graphs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- app's stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='dashboard-styles.css') }}" />
+    <!-- font awesome for dashboard icons -->
+    <script src="https://use.fontawesome.com/eccebed15e.js"></script>
+    <!-- app's own JavaScript -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <!-- D3 lib -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- Font if ant -->
+    {% block font %} {% endblock font %}
+     
+    <title>LittleFeet Tracker: {% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        {% include 'includes/_navbar-dashboard.html' %}
+    </header>
+    <div class="main">
+    <main>
+        {% include 'includes/_modal-form.html' %}
+        {% block main %} {% endblock main %}
+    </main>
+    </div>
+</body>
+</html>

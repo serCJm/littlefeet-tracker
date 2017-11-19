@@ -1,0 +1,150 @@
+{% extends "dashboard-layout.html" %} 
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block main %} 
+
+<div class="container-charts home-charts">
+    <section>
+        <h4>Total Hours:</h4>
+        <svg id="total-hours" height="400px" width="400px"></svg>
+    </section>
+    <section>
+        <h4>Total Count:</h4>
+        <svg id="total-counts" height="400px" width="400px"></svg>
+    </section>
+</div>
+
+<script>
+    
+    // get history data in JSON format (as an array)
+    var totals = JSON.parse('{{ totals|tojson }}');
+    
+    // DRAW HOURS CHART
+    // select svg for d3
+    var hours = d3.select("#total-hours")
+                .append("g")
+                .attr("transform", "translate(200,200)");
+
+    // create a pie generator with configuration
+    var pie = d3.pie()
+            .value(function(d) {return d.total_time})
+
+    // create an arc generator with configuration
+    var arcGenerator = d3.arc()
+        .innerRadius(30)
+        .outerRadius(170)
+
+    // pass data into pie chart
+    var arcData = pie(totals)
+
+    // create a path element 
+    hours.selectAll("path")
+        .data(arcData)
+        .enter()
+        .append("path")
+        .attr("d", arcGenerator)
+        .on("mouseover", function(d) {
+                    d3.select(this.parentNode)
+                    .append("text")
+                    .attr("class", "text-activity")
+                    .text(d.activity)
+                    .attr("y", 190)
+            })
+        .on("mouseout", function(d){
+            d3.selectAll("text.text-activity").remove();
+        });
+
+    // fill color depending on type of activity
+    hours.selectAll("path")
+        .data(totals)
+        .attr("fill", function(d) {
+            if (d.activity == "sleeping") {
+                return "#0B549B";
+            } else if (d.activity == "feeding") {
+                return "#EC4B40";
+            } else if (d.activity == "playing") {
+                return "#2889E8";
+            } else if (d.activity == "bathing") {
+                return "#A5B50D";
+            } else {
+                 return "#F5E941";
+            }
+        });
+                
+    // labels
+    hours.selectAll("text")
+        .data(arcData)
+        .enter()
+        .append("text")
+        .each(function(d) {
+            var centroid = arcGenerator.centroid(d);
+            d3.select(this)
+                .attr('x', centroid[0])
+                .attr('y', centroid[1])
+                .attr("class", "text-label")
+                .text(d.data.total_time)
+        });
+
+    // DRAW COUNTS CHART
+    // select svg for d3
+    var counts = d3.select("#total-counts")
+                .append("g")
+                .attr("transform", "translate(200,200)");
+
+    // create a pie generator with configuration
+    var pie = d3.pie()
+            .value(function(d) {return d.total_count})
+
+    // create a path element 
+    counts.selectAll("path")
+        .data(arcData)
+        .enter()
+        .append("path")
+        .attr("d", arcGenerator)
+        .on("mouseover", function(d) {
+                    d3.select(this.parentNode)
+                    .append("text")
+                    .attr("class", "text-activity")
+                    .text(d.activity)
+                    .attr("y", 190)
+            })
+        .on("mouseout", function(d){
+            d3.selectAll("text.text-activity").remove();
+        });
+
+    // fill color depending on type of activity
+    counts.selectAll("path")
+        .data(totals)
+        .attr("fill", function(d) {
+            if (d.activity == "sleeping") {
+                return "#0B549B";
+            } else if (d.activity == "feeding") {
+                return "#EC4B40";
+            } else if (d.activity == "playing") {
+                return "#2889E8";
+            } else if (d.activity == "bathing") {
+                return "#A5B50D";
+            } else {
+                 return "#F5E941";
+            }
+        });
+                
+    // labels
+    counts.selectAll("text")
+        .data(arcData)
+        .enter()
+        .append("text")
+        .each(function(d) {
+            var centroid = arcGenerator.centroid(d);
+            d3.select(this)
+                .attr('x', centroid[0])
+                .attr('y', centroid[1])
+                .attr("class", "text-label")
+                .text(d.data.total_count)
+        });
+
+</script>
+
+{% endblock main %}
+

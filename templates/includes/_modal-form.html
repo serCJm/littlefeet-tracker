@@ -1,0 +1,29 @@
+<!-- Trigger/Open The Modal -->
+<button id="addActivity" class="activity-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+<!--The Modal -->
+<div id="formActivity" class="modal">
+    
+    <form action="" class="modal-content" method="POST">
+    <!-- Modal content -->
+    <span class="close">&times;</span>
+    <h3 class="modal-heading">What is your baby up to?</h3>
+    
+    <!-- HTML FORM -->
+    <select class="select-activity" name="activities" required>
+        <option value="sleeping">Sleeping</option>
+        <option value="feeding">Feeding</option>
+        <option value="playing">Playing</option>
+        <option value="bathing">Bathing</option>
+        <option value="diaper">Diaper Change</option>
+    </select>
+    <div class="time-container">
+        <label>Start time:</label>
+        <input type="time" name="start" required pattern="[0-9]{2}:[0-9]{2}">
+        <label>End time:</label>
+        <input type="time" name="end" required pattern="[0-9]{2}:[0-9]{2}">
+    </div>
+    <input class="activity-notes" name="note" type="text" maxLength="150" name="notes" placeholder="Love you today because...">
+    <button class="track-btn" type="submit">Track It</button>
+    </form>
+</div>

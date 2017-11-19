@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="author" content="CJ">
+    <meta name="description" content="Little Feet Tracking is a web application that allows you to track you babies schedule with simple logs and beautiful graphs">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='logged-out-styles.css') }}" />
+
+    <title>LittleFeet Tracker: {% block title %}{% endblock title %}</title>
+</head>
+
+
+<body {% block bdclass %}{% endblock bdclass %}>
+
+    <header>
+        {% include 'includes/_navbar.html' %} {% include 'includes/_messages.html' %}
+    </header>
+    <main>
+        {% block main %} {% endblock main %}
+    </main>
+</body>
+
+</html>
