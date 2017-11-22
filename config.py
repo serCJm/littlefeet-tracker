@@ -7,7 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    # configure sessoin length
+    # configure session length
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(hours=1)
 
 
