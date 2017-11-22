@@ -1,5 +1,5 @@
 import sqlite3
-import datetime
+import os, datetime
 from functools import wraps
 
 from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify, g
@@ -13,7 +13,7 @@ from passlib.hash import sha256_crypt
 
 # configure application
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('flask.cfg')
+app.config.from_object(os.environ['APP_SETTINGS'])
 
 #NOTE: include secret_key
 #app.secret_key='dev'
